@@ -37,10 +37,7 @@ COPY . .
 # Change DocumentRoot to /var/www/html/public
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
-# Set permissions
-RUN chown -R www-data:www-data /var/www/html/data
-
-# Ensure data directory exists
+# Ensure data directory exists and set permissions
 RUN mkdir -p /var/www/html/data && chown -R www-data:www-data /var/www/html/data
 
 # Expose port 80

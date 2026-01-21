@@ -1,0 +1,21 @@
+# Exclude git history
+.git
+.gitignore
+.github
+
+# Exclude local configuration and data
+tempmail.yml
+data/
+*.db
+*.sqlite
+
+# Exclude dependencies (we install them inside Docker)
+vendor/
+composer.lock
+
+# Exclude Docker unrelated files
+docker-compose.yml
+docker-compose.override.yml
+README.md
+LICENSE
+publish_docker.sh
