@@ -1,0 +1,21 @@
+# Composer
+vendor/
+
+# Application Data
+data/
+*.sqlite
+*.db
+
+# Configuration
+tempmail.yml
+
+# System
+.DS_Store
+Thumbs.db
+
+# IDEs
+.idea/
+.vscode/
+
+# Docker
+docker-compose.override.yml
