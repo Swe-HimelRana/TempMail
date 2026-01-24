@@ -2,10 +2,12 @@ version: '3.8'
 
 services:
   app:
-    build: .
+    image: ghcr.io/swe-himelrana/tempmail:latest
     ports:
       - "8080:80"
     volumes:
-      - ./tempmail.yml:/var/www/html/tempmail.yml
+      - type: bind
+        source: ./tempmail.sample.yml
+        target: /var/www/html/tempmail.yml
       - ./data:/var/www/html/data
     restart: unless-stopped

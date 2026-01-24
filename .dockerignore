@@ -5,6 +5,7 @@
 
 # Exclude local configuration and data
 tempmail.yml
+tempmail.sample.yml
 data/
 *.db
 *.sqlite
