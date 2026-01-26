@@ -37,8 +37,11 @@ COPY . .
 # Change DocumentRoot to /var/www/html/public
 RUN sed -i 's!/var/www/html!/var/www/html/public!g' /etc/apache2/sites-available/000-default.conf
 
-# Ensure data directory exists and set permissions
-RUN mkdir -p /var/www/html/data && chown -R www-data:www-data /var/www/html/data
+# Ensure data directory and attachments exist, create DB structure, and set permissions
+RUN mkdir -p /var/www/html/data/attachments \
+    && sqlite3 /var/www/html/data/mail.db "CREATE TABLE IF NOT EXISTS emails (id INTEGER PRIMARY KEY AUTOINCREMENT, account_email TEXT, message_id TEXT UNIQUE, sender TEXT, recipient TEXT, subject TEXT, body_html TEXT, body_text TEXT, received_at DATETIME, is_read INTEGER DEFAULT 0); CREATE INDEX IF NOT EXISTS idx_recipient ON emails (recipient);" \
+    && chown -R www-data:www-data /var/www/html/data
+
 
 # Expose port 80
 EXPOSE 80
